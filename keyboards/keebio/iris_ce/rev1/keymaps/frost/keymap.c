@@ -16,7 +16,7 @@
       qmk flash -kb keebio/iris_ce/rev1 -km frost
 */
 #include QMK_KEYBOARD_H
-#include "ledmap.h"
+// #include "ledmap.h"
 
 /*
    ALIASES
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // ├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
           KC_LCTL, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_LBRC,          KC_RBRC, KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    KC_NO,
       // └────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                         KC_LALT, KC_LGUI, KC_SPC,                    AF_SPC,  MO(1),   KC_MPLY
+                                         KC_LALT, KC_LGUI, KC_SPC,                    AF_SPC,  MO(1),   RM_TOGG
       //                                └────────┴────────┴────────┘                 └────────┴────────┴────────┘
    ),
 
@@ -72,9 +72,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       // ┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
           _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
       // ├────────┼────────┼────────┼──────1──┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-          _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+          _______, _______, _______, _______, _______, _______,                            RM_FLGP, RM_VALU, RM_FLGN, _______, _______, _______,
       // ├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-          _______, _______, _______, _______, _______, _______,                            RM_PREV, _______, RM_NEXT, _______, _______, RM_TOGG,
+          _______, _______, _______, _______, _______, _______,                            RM_PREV, RM_VALD, RM_NEXT, _______, _______, RM_TOGG,
       // ├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
           _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
       // └────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -105,66 +105,66 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    ),
 */
 
-const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
-    [DVORAK] = LIGHTMAP_KEYS(
-        // ┌──GLOW──┬────────┬──GLOW──┬────────┬──GLOW──┐                                         ┌──GLOW──┬────────┬──GLOW──┬────────┬──GLOW──┐
-            ______,           ______,           ______,                                            ______,           ______,           ______,
-        // └────────┴────────┴────────┴────────┴────────┘                                         └────────┴────────┴────────┴────────┴────────┘
-        // ┌──OFF───┬──OFF───┬──NUM───┬──NUM───┬──NUM───┬──NUM───┐                       ┌──NUM───┬──NUM───┬──NUM───┬──OFF───┬──NUM───┬──OFF───┐  
-            AF_OFF,  ______,  AF_GOLD, AF_BLUE, AF_GRN, AF_PURP,                          AF_PURP, AF_GRN,  AF_BLUE, ______,  AF_RED,  ______,
-        // ├──ACT───┼──SPC───┼──SPC───┼──SPC───┼──OFF───┼──OFF───┤                       ├──OFF───┼──OFF───┼──OFF───┼──SPC───┼──SPC───┼──SPC───┤
-            AF_CYAN, AF_RED,  AF_GOLD, AF_BLUE, ______,  ______,                          ______,  ______,  ______,  AF_GOLD, AF_RED,  AF_CYAN,
-        // ├──MOD───┼──OFF───┼──OFF───┼──OFF───┼──LTR───┼──OFF───┤                       ├──OFF───┼──LTR───┼──OFF───┼──OFF───┼──SPC───┼──ACT───┤
-            AF_CYAN, ______,  ______,  ______,  AF_GRN,  ______,                          ______,  AF_GRN,  ______,  ______,  AF_RED,  AF_CYAN,
-        // ├──MOD───┼──OFF───┼──OFF───┼──OFF───┼──OFF───┼──OFF───┼──ACT───┐     ┌──ACT───┼──OFF───┼──OFF───┼──OFF───┼──OFF───┼──OFF───┤──MOD───┤
-            AF_CYAN, ______,  ______,  ______,  ______,  ______,  AF_PURP,       AF_PURP, ______,  ______,  ______,  ______,  ______,  AF_CYAN,  
-        // └────────┴────────┴────────┴────────┴──MOD───┼──MOD───┤──OFF───┤     ├──ACT───┼──ACT───┼──ACT───┼────────┴────────┴────────┴────────┘
-                                                AF_BLUE, AF_GRN,  ______,        AF_PURP, AF_GRN,  AF_BLUE,
-        //                                     └────────┴────────┴────────┘     └────────┴────────┴────────┘
-        // ┌──GLOW──┬────────┬──GLOW──┬────────┬──GLOW──┐                                         ┌──GLOW──┬────────┬──GLOW──┬────────┬──GLOW──┐
-            ______,           ______,           ______,                                            ______,           ______,           ______
-        // └────────┴────────┴────────┴────────┴────────┘                                         └────────┴────────┴────────┴────────┴────────┘
-    ),
-   // [DVORAK] = LIGHTMAP_ZONES(
-   //    AF_CYAN, // Numbers
-   //    AF_WHITE,  // Letters
-   //    AF_PINK,  // Special Characters
-   //    AF_GOLD,  // Modifiers
-   //    AF_GRN, // Actions
-   //    AF_OFF,  // Underglow
-   //    AF_OFF   // Keys without shine-through caps.
-   //  ),
-    [NAVIGATION] = LIGHTMAP_ZONES(
-      AF_BLUE, // Numbers
-      AF_OFF,  // Letters
-      AF_OFF,  // Special Characters
-      AF_OFF,  // Modifiers
-      AF_CYAN, // Actions
-      AF_OFF,  // Underglow
-      AF_OFF   // Keys without shine-through caps.
-    ),
-    [LIGHTING] = LIGHTMAP_ZONES(
-      AF_OFF,  // Numbers
-      AF_OFF,  // Letters
-      AF_OFF,  // Special Characters
-      AF_OFF,  // Modifiers
-      AF_RED,  // Actions
-      AF_BLUE, // Underglow
-      AF_OFF   // Keys without shine-through caps.
-    ),
-};
+// const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
+//     [DVORAK] = LIGHTMAP_KEYS(
+//         // ┌──GLOW──┬────────┬──GLOW──┬────────┬──GLOW──┐                                         ┌──GLOW──┬────────┬──GLOW──┬────────┬──GLOW──┐
+//             ______,           ______,           ______,                                            ______,           ______,           ______,
+//         // └────────┴────────┴────────┴────────┴────────┘                                         └────────┴────────┴────────┴────────┴────────┘
+//         // ┌──OFF───┬──OFF───┬──NUM───┬──NUM───┬──NUM───┬──NUM───┐                       ┌──NUM───┬──NUM───┬──NUM───┬──OFF───┬──NUM───┬──OFF───┐  
+//             AF_OFF,  ______,  AF_GOLD, AF_BLUE, AF_GRN, AF_PURP,                          AF_PURP, AF_GRN,  AF_BLUE, ______,  AF_RED,  ______,
+//         // ├──ACT───┼──SPC───┼──SPC───┼──SPC───┼──OFF───┼──OFF───┤                       ├──OFF───┼──OFF───┼──OFF───┼──SPC───┼──SPC───┼──SPC───┤
+//             AF_CYAN, AF_RED,  AF_GOLD, AF_BLUE, ______,  ______,                          ______,  ______,  ______,  AF_GOLD, AF_RED,  AF_CYAN,
+//         // ├──MOD───┼──OFF───┼──OFF───┼──OFF───┼──LTR───┼──OFF───┤                       ├──OFF───┼──LTR───┼──OFF───┼──OFF───┼──SPC───┼──ACT───┤
+//             AF_CYAN, ______,  ______,  ______,  AF_GRN,  ______,                          ______,  AF_GRN,  ______,  ______,  AF_RED,  AF_CYAN,
+//         // ├──MOD───┼──OFF───┼──OFF───┼──OFF───┼──OFF───┼──OFF───┼──ACT───┐     ┌──ACT───┼──OFF───┼──OFF───┼──OFF───┼──OFF───┼──OFF───┤──MOD───┤
+//             AF_CYAN, ______,  ______,  ______,  ______,  ______,  AF_PURP,       AF_PURP, ______,  ______,  ______,  ______,  ______,  AF_CYAN,  
+//         // └────────┴────────┴────────┴────────┴──MOD───┼──MOD───┤──OFF───┤     ├──ACT───┼──ACT───┼──ACT───┼────────┴────────┴────────┴────────┘
+//                                                 AF_BLUE, AF_GRN,  ______,        AF_PURP, AF_GRN,  AF_BLUE,
+//         //                                     └────────┴────────┴────────┘     └────────┴────────┴────────┘
+//         // ┌──GLOW──┬────────┬──GLOW──┬────────┬──GLOW──┐                                         ┌──GLOW──┬────────┬──GLOW──┬────────┬──GLOW──┐
+//             ______,           ______,           ______,                                            ______,           ______,           ______
+//         // └────────┴────────┴────────┴────────┴────────┘                                         └────────┴────────┴────────┴────────┴────────┘
+//     ),
+//    // [DVORAK] = LIGHTMAP_ZONES(
+//    //    AF_CYAN, // Numbers
+//    //    AF_WHITE,  // Letters
+//    //    AF_PINK,  // Special Characters
+//    //    AF_GOLD,  // Modifiers
+//    //    AF_GRN, // Actions
+//    //    AF_OFF,  // Underglow
+//    //    AF_OFF   // Keys without shine-through caps.
+//    //  ),
+//     [NAVIGATION] = LIGHTMAP_ZONES(
+//       AF_BLUE, // Numbers
+//       AF_OFF,  // Letters
+//       AF_OFF,  // Special Characters
+//       AF_OFF,  // Modifiers
+//       AF_CYAN, // Actions
+//       AF_OFF,  // Underglow
+//       AF_OFF   // Keys without shine-through caps.
+//     ),
+//     [LIGHTING] = LIGHTMAP_ZONES(
+//       AF_OFF,  // Numbers
+//       AF_OFF,  // Letters
+//       AF_OFF,  // Special Characters
+//       AF_OFF,  // Modifiers
+//       AF_RED,  // Actions
+//       AF_BLUE, // Underglow
+//       AF_OFF   // Keys without shine-through caps.
+//     ),
+// };
 
-bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    for (uint8_t i = led_min; i < led_max; i++) {
-        uint8_t layer = get_highest_layer(layer_state);
-        rgb_t color = lightmaps[layer][i];
-        rgb_matrix_set_color(i, color.r, color.g, color.b);
-    }
+// bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+//     for (uint8_t i = led_min; i < led_max; i++) {
+//         uint8_t layer = get_highest_layer(layer_state);
+//         rgb_t color = lightmaps[layer][i];
+//         rgb_matrix_set_color(i, color.r, color.g, color.b);
+//     }
 
-    return false;
-}
+//     return false;
+// }
 
-void keyboard_post_init_user(void) {
-    rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
-    rgb_matrix_sethsv_noeeprom(HSV_OFF);
-}
+// void keyboard_post_init_user(void) {
+//     rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
+//     rgb_matrix_sethsv_noeeprom(HSV_OFF);
+// }
