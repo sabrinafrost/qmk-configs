@@ -1,7 +1,8 @@
 # LTO_ENABLE = yes
 TRI_LAYER_ENABLE = yes
-NKRO_ENABLE = yes
-MAGIC_ENABLE = no
+NKRO_ENABLE 	 = yes
+MAGIC_ENABLE 	 = no
+COMBO_ENABLE 	 = yes
 
 SRC += ledmatrix.c
 
