@@ -1,0 +1,10 @@
+# LTO_ENABLE = yes
+TRI_LAYER_ENABLE = yes
+NKRO_ENABLE = yes
+MAGIC_ENABLE = no
+
+# SRC += ledmatrix.c
+# SRC += ledmap.c
+
+# RGB_MATRIX_ENABLE = yes
+# RGB_MATRIX_CUSTOM_USER = no
