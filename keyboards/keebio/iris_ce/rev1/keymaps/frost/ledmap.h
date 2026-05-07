@@ -27,7 +27,6 @@
 #define AF_WHITE       (rgb_t){0xFF, 0xFF, 0xFF}
 #define AF_YELLOW      (rgb_t){0xFF, 0xFF, 0x00}
 #define AF_OFF         AF_BLACK
-#define ______         AF_OFF
 
 /*
     LED MAP
@@ -74,16 +73,15 @@
     ```
     const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
         [DVORAK] = LIGHTMAP_KEYS(
-            ______,           ______,           ______,                                            ______,           ______,           ______,
-            AF_OFF,  ______,  AF_GOLD, AF_BLUE, AF_GRN, AF_PURP,                          AF_PURP, AF_GRN,  AF_BLUE, ______,  AF_RED,  ______,
-            AF_CYAN, AF_RED,  AF_GOLD, AF_BLUE, ______,  ______,                          ______,  ______,  ______,  AF_GOLD, AF_RED,  AF_CYAN,
-            AF_CYAN, ______,  ______,  ______,  AF_GRN,  ______,                          ______,  AF_GRN,  ______,  ______,  AF_RED,  AF_CYAN,
-            AF_CYAN, ______,  ______,  ______,  ______,  ______,  AF_PURP,       AF_PURP, ______,  ______,  ______,  ______,  ______,  AF_CYAN,  
-                                                AF_BLUE, AF_GRN,  ______,        AF_PURP, AF_GRN,  AF_BLUE,
-            ______,           ______,           ______,                                            ______,           ______,           ______
+            AF_OFF,           AF_OFF,           AF_OFF,                                            AF_OFF,           AF_OFF,           AF_OFF,
+            AF_OFF,  AF_OFF,  AF_GOLD, AF_BLUE, AF_GRN, AF_PURP,                          AF_PURP, AF_GRN,  AF_BLUE, AF_OFF,  AF_RED,  AF_OFF,
+            AF_CYAN, AF_RED,  AF_GOLD, AF_BLUE, AF_OFF,  AF_OFF,                          AF_OFF,  AF_OFF,  AF_OFF,  AF_GOLD, AF_RED,  AF_CYAN,
+            AF_CYAN, AF_OFF,  AF_OFF,  AF_OFF,  AF_GRN,  AF_OFF,                          AF_OFF,  AF_GRN,  AF_OFF,  AF_OFF,  AF_RED,  AF_CYAN,
+            AF_CYAN, AF_OFF,  AF_OFF,  AF_OFF,  AF_OFF,  AF_OFF,  AF_PURP,       AF_PURP, AF_OFF,  AF_OFF,  AF_OFF,  AF_OFF,  AF_OFF,  AF_CYAN,  
+                                                AF_BLUE, AF_GRN,  AF_OFF,        AF_PURP, AF_GRN,  AF_BLUE,
+            AF_OFF,           AF_OFF,           AF_OFF,                                            AF_OFF,           AF_OFF,           AF_OFF
         ),
     };
-    ```
 */
 #define LIGHTMAP_KEYS( \
     LG01,       LG02,       LG03,                             RG03,       RG02,       RG01, \
