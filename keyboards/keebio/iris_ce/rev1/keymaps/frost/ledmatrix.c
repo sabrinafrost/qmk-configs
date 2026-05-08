@@ -38,16 +38,16 @@ led_config_t g_led_config = {
     },
     {   // LED Index to Flag
         // LEFT SIDE
-        0, 2, 0, 4, 2, 4, 4, 2, 4, // Row 1: From left to right
+        0, 2, 4, 4, 2, 4, 4, 2, 4, // Row 1: From left to right
         0, 0, 4, 4, 4, 1,          // Row 2: From right to left
-        1, 0, 0, 0, 4, 0,          // Row 3: From left to right
-        0, 0, 0, 0, 0, 1,          // Row 4: From right to left
-        2, 2, 1, 1, 2, 0, 8,       // Row 5: From left to right
+        1, 0, 4, 4, 4, 0,          // Row 3: From left to right
+        0, 0, 0, 0, 4, 1,          // Row 4: From right to left
+        2, 2, 1, 1, 2, 1, 8,       // Row 5: From left to right
 
         // RIGHT SIDE
-        0, 2, 4, 0, 2, 4, 4, 2, 4, // Row 1: From right to left
-        0, 0, 0, 4, 4, 1,          // Row 2: From left to right
-        1, 4, 0, 0, 4, 0,          // Row 3: From right to left
+        0, 2, 4, 4, 2, 4, 4, 2, 4, // Row 1: From right to left
+        0, 0, 2, 4, 4, 1,          // Row 2: From left to right
+        1, 4, 2, 2, 2, 0,          // Row 3: From right to left
         0, 0, 0, 0, 0, 1,          // Row 4: From left to right
         2, 2, 1, 1, 2, 1, 8        // Row 5: From right to left
     }

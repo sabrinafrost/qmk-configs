@@ -37,12 +37,12 @@
    keys on the top row of the left half, or the last four keys on the top row of the right
    half. Eventually I'd like to improve this so the same actions will also exit that state.
 */
-const uint16_t PROGMEM boot_left[]  = {QK_GESC, KC_1, KC_2, KC_3, COMBO_END};
-const uint16_t PROGMEM boot_right[] = {KC_BSPC, KC_0, KC_9, KC_8, COMBO_END};
+const uint16_t PROGMEM boot_left[]  = { QK_GESC, KC_1, KC_2, KC_3, COMBO_END };
+const uint16_t PROGMEM boot_right[] = { KC_BSPC, KC_0, KC_9, KC_8, COMBO_END };
 
 combo_t key_combos[] = {
-    COMBO(boot_left, QK_BOOT),
-    COMBO(boot_right, QK_BOOT),
+   COMBO(boot_left, QK_BOOT),
+   COMBO(boot_right, QK_BOOT),
 };
 
 /*
@@ -52,43 +52,43 @@ combo_t key_combos[] = {
    that I put a title and description here like I have everywhere else, so... welcome to my neurosis!
 */
 enum custom_layers {
-     DVORAK,
-     NAVIGATION,
-     GAMING,
-     SETTINGS,
+   DVORAK,
+   NAVIGATION,
+   GAMING,
+   SETTINGS,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    [DVORAK] = LAYOUT(
-         QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
-         KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,                               KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSLS,
-         KC_LSFT, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                               KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_ENT,
-         KC_LCTL, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_LBRC,          KC_RBRC, KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    KC_NO,
-                                             KC_LALT, KC_LGUI, KC_SPC,           AF_SPC,  MO(1),   KC_MPLY
+      QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
+      KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,                               KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSLS,
+      KC_LSFT, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                               KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_ENT,
+      KC_LCTL, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_LBRC,          KC_RBRC, KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    KC_NO,
+                                          KC_LALT, KC_LGUI, KC_SPC,           AF_SPC,  MO(1),   KC_MPLY
    ),
 
     [NAVIGATION] = LAYOUT(
-         KC_GRAVE,_______, TO(0),   TO(1),   TO(2),   TO(3),                              _______, _______, _______, _______, _______, KC_DEL,
-         _______, _______, _______, _______, _______, _______,                            _______, _______, KC_UP,   KC_SLSH, KC_EQL,  _______,
-         _______, _______, _______, _______, _______, _______,                            _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_MINS, _______,
-         _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
-                                             _______, _______, _______,          _______, MO(1),   _______
+      KC_GRAVE,_______, TO(0),   TO(1),   TO(2),   TO(3),                              _______, _______, _______, _______, _______, KC_DEL,
+      _______, _______, _______, _______, _______, _______,                            _______, _______, KC_UP,   KC_SLSH, KC_EQL,  _______,
+      _______, _______, _______, _______, _______, _______,                            _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_MINS, _______,
+      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
+                                          _______, _______, _______,          _______, _______, _______
    ),
 
    [GAMING] = LAYOUT(
-         _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-         _______, _______, KC_Q,    KC_W,    KC_E,    KC_R,                               _______, _______, _______, _______, _______, _______,
-         _______, KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,                               _______, _______, _______, _______, _______, _______,
-         _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    AF_REC,           _______, _______, _______, _______, _______, _______, _______,
-                                             _______, _______, _______,          _______, MO(1),   _______
+      _______, _______, _______, _______, TO(0),   _______,                            _______, _______, _______, _______, _______, _______,
+      _______, _______, KC_Q,    KC_W,    KC_E,    KC_R,                               _______, _______, _______, _______, _______, _______,
+      _______, KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,                               _______, _______, _______, _______, _______, _______,
+      _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    AF_REC,           _______, _______, _______, _______, _______, _______, _______,
+                                          _______, _______, _______,          _______, TO(1),   _______
    ),
 
    [SETTINGS] = LAYOUT(
-         _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-         _______, _______, _______, _______, _______, _______,                            RM_FLGP, RM_VALU, RM_FLGN, _______, _______, _______,
-         _______, _______, _______, _______, _______, _______,                            RM_PREV, RM_VALD, RM_NEXT, _______, _______, RM_TOGG,
-         _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
-                                             _______, _______, _______,          _______, MO(1),   _______
+      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                            RM_FLGP, RM_VALU, RM_FLGN, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                            RM_PREV, RM_VALD, RM_NEXT, _______, _______, RM_TOGG,
+      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
+                                          _______, _______, _______,          _______, MO(1),   _______
    )
 };
 
@@ -97,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    --------------------
    Copy this into the array above for a fresh layer.
    Don't forget to add the layer name to the custom_layers enum!
-   "_______" acts as a transparent key, passing through the keycode from the layer above.
+   `_______` acts as a transparent key, passing through the keycode from the layer above.
 
    [LAYER NAME] = LAYOUT(
          _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
@@ -108,60 +108,85 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    ),
 */
 
-// Overwrite the blank keycode so we can use for RGB defines and maintain consistent spacing / appearance with the keymaps.
-#define _______ AF_OFF
+// Overwrite the blank keycode so we can use it as a pass-through
+// colour the same way `KC_TRANS` does for keycodes. This define has
+// to come after the keymaps.
+#define _______ AF_TRANS
+// Same idea, but for LEDs we want to turn off.
+#define XXXXXXX AF_NO
 
 const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
-    [DVORAK] = LIGHTMAP_KEYS(
-         _______,          _______,          _______,                                             _______,          _______,           _______,    
-         _______, _______, AF_GOLD, AF_BLUE, AF_GRN, AF_PURP,                             AF_PURP, AF_GRN,  AF_BLUE, _______, AF_RED,  _______,
-         AF_CYAN, AF_RED,  AF_GOLD, AF_BLUE, _______, _______,                            _______, _______, _______, AF_GOLD, AF_RED,  AF_CYAN,
-         AF_CYAN, _______, _______, _______,  AF_GRN, _______,                            _______, AF_GRN,  _______, _______, AF_RED,  AF_CYAN,
-         AF_CYAN, _______, _______, _______, _______, _______, AF_PURP,          AF_PURP, _______, _______, _______, _______, _______, AF_CYAN,  
-                                             AF_BLUE, AF_GRN,  _______,          AF_PURP, AF_GRN,  AF_BLUE,
-         _______,          _______,          _______,                                              _______,          _______,          _______    
-    ),
+   [DVORAK] = LIGHTMAP_KEYS(
+      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,     
+      XXXXXXX, AF_RED,  AF_GOLD, AF_CYAN, AF_GRN,  AF_PURP,                            AF_PURP, AF_GRN,  AF_CYAN, AF_GOLD, AF_RED,  XXXXXXX, 
+      AF_CYAN, AF_RED,  AF_GOLD, AF_CYAN, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, AF_CYAN, AF_GOLD, AF_RED,  AF_CYAN,
+      AF_CYAN, XXXXXXX, AF_GOLD, AF_CYAN, AF_GRN,  XXXXXXX,                            XXXXXXX, AF_GRN,  AF_CYAN, AF_GOLD, AF_RED,  AF_CYAN,
+      AF_CYAN, AF_RED,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AF_PURP,          AF_PURP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AF_CYAN,  
+                                          AF_CYAN, AF_GRN,  AF_PURP,          AF_PURP, AF_GRN,  AF_CYAN,
+      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX     
+   ),
    [NAVIGATION] = LIGHTMAP_KEYS(
-         _______,          _______,          _______,                                              _______,          _______,          _______,    
-         _______, _______,  AF_GRN, AF_GOLD, AF_ORN,  AF_RED,                             _______, _______, _______, _______, _______, _______,
-         _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-         _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-         _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, 
-                                             _______, _______, _______,          _______, AF_GRN,  _______,
-         _______,          _______,          _______,                                              _______,          _______,          _______    
+      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,    
+      XXXXXXX, XXXXXXX, AF_GRN,  AF_GOLD, AF_ORN,  AF_RED,                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, AF_CYAN, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, AF_CYAN, AF_CYAN, AF_CYAN, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+                                          XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, AF_GRN,  XXXXXXX,
+      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX    
    ),
    [GAMING] = LIGHTMAP_KEYS(
-         _______,          _______,          _______,                                              _______,          _______,          _______,    
-         _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-         _______, _______, _______, AF_CYAN, _______, _______,                            _______, _______, _______, _______, _______, _______,
-         _______, _______, _______, _______, AF_CYAN, _______,                            _______, _______, _______, _______, _______, _______,
-         _______, _______, _______, _______, _______, _______, AF_RED,           _______, _______, _______, _______, _______, _______, _______, 
-                                             _______, _______, _______,          _______, AF_GRN,  _______,
-         _______,          _______,          _______,                                              _______,          _______,          _______    
+      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,    
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, AF_CYAN, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, AF_CYAN, AF_CYAN, AF_CYAN, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AF_RED,           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+                                          XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, AF_GRN,  XXXXXXX,
+      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX    
    ),
    [SETTINGS] = LIGHTMAP_KEYS(
-         _______,          _______,          _______,                                              _______,          _______,          _______,    
-         _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-         _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-         _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-         _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______, 
-                                             _______, _______, _______,          _______, AF_GRN,  _______,
-         _______,          _______,          _______,                                              _______,          _______,          _______    
-
+      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,    
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+                                          XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, AF_GRN,  XXXXXXX,
+      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX
    )
 };
 
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-    for (uint8_t i = led_min; i < led_max; i++) {
-        uint8_t layer = get_highest_layer(layer_state);
-        rgb_t color = lightmaps[layer][i];
-        rgb_matrix_set_color(i, color.r, color.g, color.b);
-    }
+   for (uint8_t i = led_min; i < led_max; i++) {
+      uint8_t layer = get_highest_layer(layer_state);
+      rgb_t colour = lightmaps[layer][i];
+      
+      // Check if the colour from the referenced layer
+      // matches _______ / AF_TRANS. If it does, search
+      // the previous layers until a colour is found and
+      // pass that colour through.
+      if (layer > 0 && rgb_equal(colour, _______)) {
+         for (uint8_t l = layer; l < sizeof(keymaps)/sizeof(keymaps[0]); l--) {
+            // We've reached the last layer and no colour
+            // was found so we'll just turn it off.
+            if (l < 0) {
+               colour = XXXXXXX;
+               break;
+            };
+            
+            // A colour was found so we'll use it and break the loop.
+            if (!rgb_equal(lightmaps[l][i], _______)) {
+               colour = lightmaps[l][i];
+               break;
+            }
+         }
+      }
+      
+      rgb_matrix_set_color(i, colour.r, colour.g, colour.b);
+   }
 
-    return false;
+   return false;
 }
 
 void keyboard_post_init_user(void) {
-    rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
-    rgb_matrix_sethsv_noeeprom(HSV_OFF);
+   rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
+   rgb_matrix_sethsv_noeeprom(HSV_OFF);
 }

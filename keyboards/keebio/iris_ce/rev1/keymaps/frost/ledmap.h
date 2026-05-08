@@ -8,7 +8,6 @@
     The following colours are available for use in the functions below.
 */
 #define AF_AZURE       (rgb_t){0x99, 0xF5, 0xFF}
-#define AF_BLACK       (rgb_t){0x00, 0x00, 0x00}
 #define AF_BLUE        (rgb_t){0x00, 0x00, 0xFF}
 #define AF_CHARTREUSE  (rgb_t){0x80, 0xFF, 0x00}
 #define AF_CORAL       (rgb_t){0xFF, 0x7C, 0x4D}
@@ -26,13 +25,18 @@
 #define AF_TURQUOISE   (rgb_t){0x47, 0x6E, 0x6A}
 #define AF_WHITE       (rgb_t){0xFF, 0xFF, 0xFF}
 #define AF_YELLOW      (rgb_t){0xFF, 0xFF, 0x00}
-#define AF_OFF         AF_BLACK
+// AF_TRANS is practically black, but I'm using it as a way to
+// signal that we want to pass through the colour assignment from
+// the previous layer in the same that KC_TRANS does for keycodes.
+#define AF_TRANS       (rgb_t){0x00, 0x00, 0x01}
+// AF_NO is pure black and simply means the LED is turned off.
+#define AF_NO          (rgb_t){0x00, 0x00, 0x00}
 
 /*
     LED MAP
     ---
     This is how I've "zoned" out my LEDs. You can do this properly with flags, but I'd like to 
-    make use of QMK's userspace, which doesn't allow you to edit keyboard.json. This makes the
+    make use of QMK's userspace, which doesn't allow you to edit `keyboard.json`. This makes the
     zone skipping features in QMK useless, but that doesn't really matter to me because I'm
     handling my own lighting.
 
@@ -167,3 +171,16 @@
     ALL, ALL, ALL, ALL, ALL, ALL, \
     ALL, ALL, ALL, ALL, ALL, ALL, ALL, \
 }
+
+/*
+    Compares two `rgb_t` colour values.
+
+    Example
+    ---
+    ```
+    if (!rgb_equal(AF_WHITE, AF_BLACK)) {
+        // Suprise! They don't match.
+    }
+    ```
+*/
+bool rgb_equal(rgb_t a, rgb_t b);
