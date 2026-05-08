@@ -63,12 +63,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
       KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,                               KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSLS,
       KC_LSFT, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                               KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_ENT,
-      KC_LCTL, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_LBRC,          KC_RBRC, KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    KC_NO,
+      KC_LCTL, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_LBRC,          KC_RBRC, KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    XXXXXXX,
                                           KC_LALT, KC_LGUI, KC_SPC,           AF_SPC,  MO(1),   KC_MPLY
    ),
 
     [NAVIGATION] = LAYOUT(
-      KC_GRAVE,_______, TO(0),   TO(1),   TO(2),   TO(3),                              _______, _______, _______, _______, _______, KC_DEL,
+      KC_GRV,  TO(0),   _______, TO(2),   TO(3),   _______,                            _______, _______, _______, _______, _______, KC_DEL,
       _______, _______, _______, _______, _______, _______,                            _______, _______, KC_UP,   KC_SLSH, KC_EQL,  _______,
       _______, _______, _______, _______, _______, _______,                            _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_MINS, _______,
       _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
@@ -76,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    ),
 
    [GAMING] = LAYOUT(
-      _______, _______, _______, _______, TO(0),   _______,                            _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, TO(0),   _______, _______,                            _______, _______, _______, _______, _______, _______,
       _______, _______, KC_Q,    KC_W,    KC_E,    KC_R,                               _______, _______, _______, _______, _______, _______,
       _______, KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,                               _______, _______, _______, _______, _______, _______,
       _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    AF_REC,           _______, _______, _______, _______, _______, _______, _______,
