@@ -93,19 +93,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 /* 
-   EMPTY LAYER TEMPLATE
+   EMPTY KEYMAP LAYER
    --------------------
    Copy this into the array above for a fresh layer.
    Don't forget to add the layer name to the custom_layers enum!
-   `_______` acts as a transparent key, passing through the keycode from the layer above.
 
    [LAYER NAME] = LAYOUT(
-         _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-         _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-         _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-         _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
-                                             _______, _______, _______,          _______, _______, _______,
-   ),
+      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
+                                          _______, _______, _______,          _______, _______, _______,
+   )
 */
 
 // Overwrite the blank keycode so we can use it as a pass-through
@@ -127,7 +126,7 @@ const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
    ),
    [NAVIGATION] = LIGHTMAP_KEYS(
       XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,    
-      XXXXXXX, XXXXXXX, AF_GRN,  AF_GOLD, AF_ORN,  AF_RED,                             XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, AF_GRN,  AF_GOLD, AF_ORN,  AF_RED,  XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, AF_CYAN, XXXXXXX, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, AF_CYAN, AF_CYAN, AF_CYAN, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
@@ -154,39 +153,57 @@ const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
    )
 };
 
-bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-   for (uint8_t i = led_min; i < led_max; i++) {
-      uint8_t layer = get_highest_layer(layer_state);
-      rgb_t colour = lightmaps[layer][i];
+/* 
+   EMPTY LIGHTMAP LAYER
+   --------------------
+   Copy this into the array above for a fresh layer.
+   Don't forget to add the layer name to the custom_layers enum!
+   It should match the respective layer's name in the keymap above.
+
+   [LAYER NAME] = LAYOUT(
+      _______,          _______,          _______,                                              _______,          _______,          _______,    
+      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
+                                          _______, _______, _______,          _______, _______, _______,
+      _______,          _______,          _______,                                              _______,          _______,          _______,    
+   ),
+*/
+
+// bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+//    for (uint8_t i = led_min; i < led_max; i++) {
+//       uint8_t layer = get_highest_layer(layer_state);
+//       rgb_t colour = lightmaps[layer][i];
       
-      // Check if the colour from the referenced layer
-      // matches _______ / AF_TRANS. If it does, search
-      // the previous layers until a colour is found and
-      // pass that colour through.
-      if (layer > 0 && rgb_equal(colour, _______)) {
-         for (uint8_t l = layer; l < sizeof(keymaps)/sizeof(keymaps[0]); l--) {
-            // We've reached the last layer and no colour
-            // was found so we'll just turn it off.
-            if (l < 0) {
-               colour = XXXXXXX;
-               break;
-            };
+//       // Check if the colour from the referenced layer
+//       // matches _______ / AF_TRANS. If it does, search
+//       // the previous layers until a colour is found and
+//       // pass that colour through.
+//       if (layer > 0 && rgb_equal(colour, _______)) {
+//          for (uint8_t l = layer; l < sizeof(keymaps)/sizeof(keymaps[0]); l--) {
+//             // We've reached the last layer and no colour
+//             // was found so we'll just turn it off.
+//             if (l < 0) {
+//                colour = XXXXXXX;
+//                break;
+//             };
             
-            // A colour was found so we'll use it and break the loop.
-            if (!rgb_equal(lightmaps[l][i], _______)) {
-               colour = lightmaps[l][i];
-               break;
-            }
-         }
-      }
+//             // A colour was found so we'll use it and break the loop.
+//             if (!rgb_equal(lightmaps[l][i], _______)) {
+//                colour = lightmaps[l][i];
+//                break;
+//             }
+//          }
+//       }
       
-      rgb_matrix_set_color(i, colour.r, colour.g, colour.b);
-   }
+//       rgb_matrix_set_color(i, colour.r, colour.g, colour.b);
+//    }
 
-   return false;
-}
+//    return false;
+// }
 
-void keyboard_post_init_user(void) {
-   rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
-   rgb_matrix_sethsv_noeeprom(HSV_OFF);
-}
+// void keyboard_post_init_user(void) {
+//    rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
+//    rgb_matrix_sethsv_noeeprom(HSV_OFF);
+// }

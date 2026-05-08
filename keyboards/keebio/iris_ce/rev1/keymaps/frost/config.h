@@ -7,8 +7,8 @@
 #define SPLIT_LED_STATE_ENABLE
 #define SPLIT_MODS_ENABLE
 
-#undef RGB_MATRIX_MAXIMUM_BRIGHTNESS
-#undef RGB_MATRIX_FLAG_STEPS
+#undef  RGB_MATRIX_MAXIMUM_BRIGHTNESS
+#undef  RGB_MATRIX_FLAG_STEPS
 
 #define RGB_MATRIX_SLEEP // turn off effects when suspended
 #define RGB_MATRIX_LED_FLUSH_LIMIT 8 // limits in milliseconds how frequently an animation will update the LEDs. 16 (16ms) is equivalent to limiting to 60fps (increases keyboard responsiveness)
