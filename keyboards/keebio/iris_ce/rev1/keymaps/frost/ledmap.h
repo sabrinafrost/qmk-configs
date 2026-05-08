@@ -184,3 +184,5 @@
     ```
 */
 bool rgb_equal(rgb_t a, rgb_t b);
+
+extern const rgb_t lightmaps[][RGB_MATRIX_LED_COUNT];

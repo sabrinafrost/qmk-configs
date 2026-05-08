@@ -17,6 +17,7 @@
 */
 #include QMK_KEYBOARD_H
 #include "ledmap.h"
+#include "shared.h"
 
 /*
    ALIASES
@@ -43,19 +44,6 @@ const uint16_t PROGMEM boot_right[] = { KC_BSPC, KC_0, KC_9, KC_8, COMBO_END };
 combo_t key_combos[] = {
    COMBO(boot_left, QK_BOOT),
    COMBO(boot_right, QK_BOOT),
-};
-
-/*
-   LAYERS
-   ------
-   I mean... it's pretty self-explanatory, but my need for consistency dictates
-   that I put a title and description here like I have everywhere else, so... welcome to my neurosis!
-*/
-enum custom_layers {
-   DVORAK,
-   NAVIGATION,
-   GAMING,
-   SETTINGS,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -107,70 +95,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    )
 */
 
-// Overwrite the blank keycode so we can use it as a pass-through
-// colour the same way `KC_TRANS` does for keycodes. This define has
-// to come after the keymaps.
-#define _______ AF_TRANS
-// Same idea, but for LEDs we want to turn off.
-#define XXXXXXX AF_NO
-
-const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
-   [DVORAK] = LIGHTMAP_KEYS(
-      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,     
-      XXXXXXX, AF_RED,  AF_GOLD, AF_CYAN, AF_GRN,  AF_PURP,                            AF_PURP, AF_GRN,  AF_CYAN, AF_GOLD, AF_RED,  XXXXXXX, 
-      AF_CYAN, AF_RED,  AF_GOLD, AF_CYAN, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, AF_CYAN, AF_GOLD, AF_RED,  AF_CYAN,
-      AF_CYAN, XXXXXXX, AF_GOLD, AF_CYAN, AF_GRN,  XXXXXXX,                            XXXXXXX, AF_GRN,  AF_CYAN, AF_GOLD, AF_RED,  AF_CYAN,
-      AF_CYAN, AF_RED,  XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AF_PURP,          AF_PURP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AF_CYAN,  
-                                          AF_CYAN, AF_GRN,  AF_PURP,          AF_PURP, AF_GRN,  AF_CYAN,
-      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX     
-   ),
-   [NAVIGATION] = LIGHTMAP_KEYS(
-      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,    
-      XXXXXXX, AF_GRN,  AF_GOLD, AF_ORN,  AF_RED,  XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, AF_CYAN, XXXXXXX, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, AF_CYAN, AF_CYAN, AF_CYAN, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
-                                          XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, AF_GRN,  XXXXXXX,
-      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX    
-   ),
-   [GAMING] = LIGHTMAP_KEYS(
-      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,    
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, AF_CYAN, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, AF_CYAN, AF_CYAN, AF_CYAN, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AF_RED,           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
-                                          XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, AF_GRN,  XXXXXXX,
-      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX    
-   ),
-   [SETTINGS] = LIGHTMAP_KEYS(
-      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,    
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
-                                          XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, AF_GRN,  XXXXXXX,
-      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX
-   )
-};
-
-/* 
-   EMPTY LIGHTMAP LAYER
-   --------------------
-   Copy this into the array above for a fresh layer.
-   Don't forget to add the layer name to the custom_layers enum!
-   It should match the respective layer's name in the keymap above.
-
-   [LAYER NAME] = LAYOUT(
-      _______,          _______,          _______,                                              _______,          _______,          _______,    
-      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
-      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
-                                          _______, _______, _______,          _______, _______, _______,
-      _______,          _______,          _______,                                              _______,          _______,          _______,    
-   ),
-*/
-
 // bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
 //    for (uint8_t i = led_min; i < led_max; i++) {
 //       uint8_t layer = get_highest_layer(layer_state);
@@ -203,7 +127,11 @@ const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
 //    return false;
 // }
 
-// void keyboard_post_init_user(void) {
+void keyboard_post_init_user(void) {
 //    rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
 //    rgb_matrix_sethsv_noeeprom(HSV_OFF);
-// }
+   rgb_matrix_mode(RGB_MATRIX_CUSTOM_per_key_per_layer);
+
+   debug_enable=true;
+   debug_matrix=true;
+}
