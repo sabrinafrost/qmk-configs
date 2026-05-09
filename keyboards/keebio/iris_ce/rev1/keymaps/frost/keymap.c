@@ -46,6 +46,39 @@ combo_t key_combos[] = {
 };
 
 /*
+   TIPPETY TAPPIES
+   ------
+   Here's a lil' tap dance that adds AirPod style media controls to a single key.
+   Tap once for play/pause, twice for next track, and three times to go back.
+*/
+
+enum {
+  TD_MEDIA,
+};
+
+void media_control_dance(tap_dance_state_t *state, void *user_data) {
+    switch (state->count) {
+        case 1: // One tap toggles play / pause
+            tap_code(KC_MPLY);
+            break;
+        case 2: // Two taps goes to next track
+            tap_code(KC_MNXT);
+            break;
+        case 3: // Three taps goes to previous track
+            tap_code(KC_MPRV);
+            break;
+        default: // Four or more taps does nothing
+            break;
+    }
+
+    reset_tap_dance(state);
+}
+
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_MEDIA] = ACTION_TAP_DANCE_FN(media_control_dance),
+};
+
+/*
    LAYERS
    ------
    I mean... it's pretty self-explanatory, but my need for consistency dictates
@@ -64,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,                               KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSLS,
       KC_LSFT, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                               KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_ENT,
       KC_LCTL, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_LBRC,          KC_RBRC, KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    XXXXXXX,
-                                          KC_LALT, KC_LGUI, KC_SPC,           AF_SPC,  MO(1),   KC_MPLY
+                                          KC_LALT, KC_LGUI, KC_SPC,           AF_SPC,  MO(1),   TD(TD_MEDIA)
    ),
 
     [NAVIGATION] = LAYOUT(
