@@ -16,7 +16,7 @@
       qmk flash -kb keebio/iris_ce/rev1 -km frost
 */
 #include QMK_KEYBOARD_H
-#include "ledmap.h"
+#include "rgbmap.h"
 
 /*
    ALIASES
@@ -114,8 +114,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // Same idea, but for LEDs we want to turn off.
 #define XXXXXXX AF_NO
 
-const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
-   [DVORAK] = LIGHTMAP_KEYS(
+const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
+   [DVORAK] = RGB_LAYOUT(
       XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,     
       XXXXXXX, AF_RED,  AF_GOLD, AF_CYAN, AF_GRN,  AF_PURP,                            AF_PURP, AF_GRN,  AF_CYAN, AF_GOLD, AF_RED,  XXXXXXX, 
       AF_CYAN, AF_RED,  AF_GOLD, AF_CYAN, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, AF_CYAN, AF_GOLD, AF_RED,  AF_CYAN,
@@ -124,7 +124,7 @@ const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
                                           AF_CYAN, AF_GRN,  AF_PURP,          AF_PURP, AF_GRN,  AF_CYAN,
       XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX     
    ),
-   [NAVIGATION] = LIGHTMAP_KEYS(
+   [NAVIGATION] = RGB_LAYOUT(
       XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,    
       XXXXXXX, AF_GRN,  AF_GOLD, AF_ORN,  AF_RED,  XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, AF_CYAN, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -133,7 +133,7 @@ const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
                                           XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, AF_GRN,  XXXXXXX,
       XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX    
    ),
-   [GAMING] = LIGHTMAP_KEYS(
+   [GAMING] = RGB_LAYOUT(
       XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,    
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, AF_CYAN, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -142,7 +142,7 @@ const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
                                           XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, AF_GRN,  XXXXXXX,
       XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX    
    ),
-   [SETTINGS] = LIGHTMAP_KEYS(
+   [SETTINGS] = RGB_LAYOUT(
       XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,    
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
@@ -171,39 +171,39 @@ const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
    ),
 */
 
-// bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-//    for (uint8_t i = led_min; i < led_max; i++) {
-//       uint8_t layer = get_highest_layer(layer_state);
-//       rgb_t colour = lightmaps[layer][i];
+bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
+   for (uint8_t i = led_min; i < led_max; i++) {
+      uint8_t layer = get_highest_layer(layer_state);
+      rgb_t colour = rgbmaps[layer][i];
       
-//       // Check if the colour from the referenced layer
-//       // matches _______ / AF_TRANS. If it does, search
-//       // the previous layers until a colour is found and
-//       // pass that colour through.
-//       if (layer > 0 && rgb_equal(colour, _______)) {
-//          for (uint8_t l = layer; l < sizeof(keymaps)/sizeof(keymaps[0]); l--) {
-//             // We've reached the last layer and no colour
-//             // was found so we'll just turn it off.
-//             if (l < 0) {
-//                colour = XXXXXXX;
-//                break;
-//             };
+      // Check if the colour from the referenced layer
+      // matches _______ / AF_TRANS. If it does, search
+      // the previous layers until a colour is found and
+      // pass that colour through.
+      if (layer > 0 && rgb_equal(colour, _______)) {
+         for (uint8_t l = layer; l < sizeof(keymaps)/sizeof(keymaps[0]); l--) {
+            // We've reached the last layer and no colour
+            // was found so we'll just turn it off.
+            if (l < 0) {
+               colour = XXXXXXX;
+               break;
+            };
             
-//             // A colour was found so we'll use it and break the loop.
-//             if (!rgb_equal(lightmaps[l][i], _______)) {
-//                colour = lightmaps[l][i];
-//                break;
-//             }
-//          }
-//       }
+            // A colour was found so we'll use it and break the loop.
+            if (!rgb_equal(rgbmaps[l][i], _______)) {
+               colour = rgbmaps[l][i];
+               break;
+            }
+         }
+      }
       
-//       rgb_matrix_set_color(i, colour.r, colour.g, colour.b);
-//    }
+      rgb_matrix_set_color(i, colour.r, colour.g, colour.b);
+   }
 
-//    return false;
-// }
+   return false;
+}
 
-// void keyboard_post_init_user(void) {
-//    rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
-//    rgb_matrix_sethsv_noeeprom(HSV_OFF);
-// }
+void keyboard_post_init_user(void) {
+   rgb_matrix_mode(RGB_MATRIX_SOLID_COLOR);
+   rgb_matrix_sethsv_noeeprom(HSV_OFF);
+}
