@@ -1,33 +1,23 @@
-/*
-   CREDITS
-   -------
-   Custom keymap for the Iris CE by Alys Frost (2026)
-   SPDX-License-Identifier: GPL-2.0-or-later
+/* Copyright 2026 Alys Frost
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-   INSTRUCTIONS
-   ------------
-   Take a look at README.md first, but these are the commands to run once your
-   environment is set up with external userspaces.
-
-   To compile firmware with this keymap, enter this command into your terminal.
-      qmk compile -kb keebio/iris_ce/rev1 -km frost
-   
-   To flash the firmware to your board, use QMK Toolbox or enter this command into your terminal.
-      qmk flash -kb keebio/iris_ce/rev1 -km frost
-*/
 #include QMK_KEYBOARD_H
-#include "rgbmap.h"
-
-/*
-   ALIASES
-   -------
-   It drives me nuts when lengthy keycodes mess up the visual columns of the keymaps.
-   These are aliases to shorten those keycodes so they fit nicely into the columns.
-   Each alias follows the format of my initials, underscore, and then whatever makes sense.
-*/
-#define AF_SPC LGUI(KC_SPC)           // Activates Spotlight
-#define AF_SCR LGUI(LSFT(KC_3))       // Takes a screenshot
-#define AF_REC LGUI(LALT(LSFT(KC_3))) // Toggles recording in OBS
+#include "./keymap.h"
+#include "./features/tapdances.h"
+#include "./features/rgb/map.h"
 
 /*
    COMBOS
@@ -45,83 +35,34 @@ combo_t key_combos[] = {
    COMBO(boot_right, QK_BOOT),
 };
 
-/*
-   TIPPETY TAPPIES
-   ------
-   Here's a lil' tap dance that adds AirPod style media controls to a single key.
-   Tap once for play/pause, twice for next track, and three times to go back.
-*/
-
-enum {
-  TD_MEDIA,
-};
-
-void media_control_dance(tap_dance_state_t *state, void *user_data) {
-    switch (state->count) {
-        case 1: // One tap toggles play / pause
-            tap_code(KC_MPLY);
-            break;
-        case 2: // Two taps goes to next track
-            tap_code(KC_MNXT);
-            break;
-        case 3: // Three taps goes to previous track
-            tap_code(KC_MPRV);
-            break;
-        default: // Four or more taps does nothing
-            break;
-    }
-
-    reset_tap_dance(state);
-}
-
-tap_dance_action_t tap_dance_actions[] = {
-    [TD_MEDIA] = ACTION_TAP_DANCE_FN(media_control_dance),
-};
-
-/*
-   LAYERS
-   ------
-   I mean... it's pretty self-explanatory, but my need for consistency dictates
-   that I put a title and description here like I have everywhere else, so... welcome to my neurosis!
-*/
-enum custom_layers {
-   DVORAK,
-   NAVIGATION,
-   GAMING,
-   SETTINGS,
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    [DVORAK] = LAYOUT(
       QK_GESC, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
       KC_TAB,  KC_QUOT, KC_COMM, KC_DOT,  KC_P,    KC_Y,                               KC_F,    KC_G,    KC_C,    KC_R,    KC_L,    KC_BSLS,
       KC_LSFT, KC_A,    KC_O,    KC_E,    KC_U,    KC_I,                               KC_D,    KC_H,    KC_T,    KC_N,    KC_S,    KC_ENT,
-      KC_LCTL, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_LBRC,          KC_RBRC, KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    XXXXXXX,
-                                          KC_LALT, KC_LGUI, KC_SPC,           AF_SPC,  MO(1),   TD(TD_MEDIA)
+      KC_LCTL, KC_SCLN, KC_Q,    KC_J,    KC_K,    KC_X,    KC_LBRC,          AF_LYR,  KC_B,    KC_M,    KC_W,    KC_V,    KC_Z,    XXXXXXX,
+                                          KC_LALT, KC_LGUI, KC_SPC,           AF_SPC,  MO(1),   AF_MED
    ),
-
-    [NAVIGATION] = LAYOUT(
-      KC_GRV,  TO(0),   _______, TO(2),   TO(3),   _______,                            _______, _______, _______, _______, _______, KC_DEL,
-      _______, _______, _______, _______, _______, _______,                            _______, _______, KC_UP,   KC_SLSH, KC_EQL,  _______,
-      _______, _______, _______, _______, _______, _______,                            _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_MINS, _______,
-      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
-                                          _______, _______, _______,          _______, _______, _______
-   ),
-
    [GAMING] = LAYOUT(
-      _______, _______, _______, TO(0),   _______, _______,                            _______, _______, _______, _______, _______, _______,
+      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
       _______, _______, KC_Q,    KC_W,    KC_E,    KC_R,                               _______, _______, _______, _______, _______, _______,
-      _______, KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,                               _______, _______, _______, _______, _______, _______,
+      _______, KC_RSFT, KC_A,    KC_S,    KC_D,    KC_F,                               _______, _______, _______, _______, _______, _______,
       _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    AF_REC,           _______, _______, _______, _______, _______, _______, _______,
-                                          _______, _______, _______,          _______, TO(1),   _______
+      _______, _______, _______,          _______, TO(1),   _______
    ),
-
    [SETTINGS] = LAYOUT(
       _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
       _______, _______, _______, _______, _______, _______,                            RM_FLGP, RM_VALU, RM_FLGN, _______, _______, _______,
       _______, _______, _______, _______, _______, _______,                            RM_PREV, RM_VALD, RM_NEXT, _______, _______, RM_TOGG,
       _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
-                                          _______, _______, _______,          _______, MO(1),   _______
+      _______, _______, _______,          _______, MO(1),   _______
+   ),
+   [NAVIGATION] = LAYOUT(
+      KC_GRV,  TO(0),   _______, TO(2),   TO(3),   _______,                            _______, _______, _______, _______, _______, KC_DEL,
+      _______, _______, _______, _______, _______, _______,                            _______, _______, KC_UP,   KC_SLSH, KC_EQL,  _______,
+      _______, _______, _______, _______, _______, _______,                            _______, KC_LEFT, KC_DOWN, KC_RGHT, KC_MINS, _______,
+      _______, _______, _______, _______, _______, _______, _______,          _______, _______, _______, _______, _______, _______, _______,
+                                          _______, _______, _______,          _______, _______, _______
    )
 };
 
@@ -157,22 +98,13 @@ const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
                                           AF_CYAN, AF_GRN,  AF_PURP,          AF_PURP, AF_GRN,  AF_CYAN,
       XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX     
    ),
-   [NAVIGATION] = RGB_LAYOUT(
-      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,    
-      XXXXXXX, AF_GRN,  AF_GOLD, AF_ORN,  AF_RED,  XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, AF_CYAN, XXXXXXX, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, AF_CYAN, AF_CYAN, AF_CYAN, XXXXXXX, XXXXXXX,
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
-                                          XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, AF_GRN,  XXXXXXX,
-      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX    
-   ),
    [GAMING] = RGB_LAYOUT(
       XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,    
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, AF_CYAN, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, AF_CYAN, AF_CYAN, AF_CYAN, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, AF_RED,           XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
-                                          XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, AF_GRN,  XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, AF_GRN,  XXXXXXX,
       XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX    
    ),
    [SETTINGS] = RGB_LAYOUT(
@@ -181,8 +113,17 @@ const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
-                                          XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, AF_GRN,  XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, AF_GRN,  XXXXXXX,
       XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX
+   ),
+   [NAVIGATION] = RGB_LAYOUT(
+      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX,    
+      XXXXXXX, AF_GRN,  AF_GOLD, AF_ORN,  AF_RED,  XXXXXXX,                            XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, XXXXXXX, AF_CYAN, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                            XXXXXXX, AF_CYAN, AF_CYAN, AF_CYAN, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, 
+                                          XXXXXXX, XXXXXXX, XXXXXXX,          XXXXXXX, AF_GRN,  XXXXXXX,
+      XXXXXXX,          XXXXXXX,          XXXXXXX,                                              XXXXXXX,          XXXXXXX,          XXXXXXX    
    )
 };
 

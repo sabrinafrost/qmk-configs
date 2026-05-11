@@ -5,5 +5,6 @@ MAGIC_ENABLE = no
 COMBO_ENABLE = yes
 TAP_DANCE_ENABLE = yes
 
-SRC += rgbflags.c
-SRC += rgbmap.c
+SRC += ./features/rgb/flags.c
+SRC += ./features/rgb/map.c
+SRC += ./features/tapdances.c
