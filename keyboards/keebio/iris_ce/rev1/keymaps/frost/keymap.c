@@ -84,22 +84,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
    [DVORAK] = RGB_LAYOUT(
-      AF_CYAN,          AF_CYAN,          AF_CYAN,                                              AF_CYAN,          AF_CYAN,          AF_CYAN,
+      AF_NONE,          AF_NONE,          AF_NONE,                                              AF_NONE,          AF_NONE,          AF_NONE,
       AF_NONE, AF_PINK, AF_GOLD, AF_CYAN, AF_LIME, AF_PURP,                            AF_PURP, AF_LIME, AF_CYAN, AF_GOLD, AF_PINK, AF_NONE,    
       AF_CYAN, AF_PINK, AF_GOLD, AF_CYAN, AF_NONE, AF_NONE,                            AF_NONE, AF_NONE, AF_CYAN, AF_GOLD, AF_PINK, AF_CYAN,   
       AF_CYAN, AF_NONE, AF_GOLD, AF_CYAN, AF_LIME, AF_NONE,                            AF_NONE, AF_LIME, AF_CYAN, AF_GOLD, AF_PINK, AF_CYAN,   
       AF_CYAN, AF_PINK, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_CYAN,          AF_PURP, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_CYAN,     
                                           AF_CYAN, AF_LIME, AF_PURP,          AF_PURP, AF_CYAN, AF_CYAN,
-      AF_CYAN,          AF_CYAN,          AF_CYAN,                                              AF_CYAN,          AF_CYAN,          AF_CYAN
+      AF_NONE,          AF_NONE,          AF_NONE,                                              AF_NONE,          AF_NONE,          AF_NONE
    ),
    [NAVIGATION] = RGB_LAYOUT(
-      AF_LIME,          AF_LIME,          AF_LIME,                                              AF_LIME,          AF_LIME,          AF_LIME,     
+      AF_NONE,          AF_NONE,          AF_NONE,                                              AF_NONE,          AF_NONE,          AF_NONE,     
       AF_NONE, AF_CYAN, AF_LIME, AF_GOLD, AF_FIRE, AF_NONE,                            AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, 
       AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE,                            AF_NONE, AF_NONE, AF_CYAN, AF_NONE, AF_NONE, AF_NONE, 
       AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE,                            AF_NONE, AF_CYAN, AF_CYAN, AF_CYAN, AF_NONE, AF_NONE, 
       AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_LIME,          AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, 
                                           AF_NONE, AF_NONE, AF_NONE,          AF_NONE, AF_LIME, AF_NONE, 
-      AF_LIME,          AF_LIME,          AF_LIME,                                              AF_LIME,          AF_LIME,          AF_LIME
+      AF_NONE,          AF_NONE,          AF_NONE,                                              AF_NONE,          AF_NONE,          AF_NONE
    ),
    [SETTINGS] = RGB_LAYOUT(
       AF_GOLD,          AF_GOLD,          AF_GOLD,                                              AF_GOLD,          AF_GOLD,          AF_GOLD,    
@@ -108,7 +108,7 @@ const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
       AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE,                            AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, 
       AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_GOLD,          AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, 
                                           AF_NONE, AF_NONE, AF_NONE,          AF_NONE, AF_GOLD, AF_NONE, 
-      AF_GOLD,          AF_GOLD,          AF_GOLD,                                              AF_GOLD,          AF_GOLD,          AF_GOLD
+      AF_NONE,          AF_NONE,          AF_NONE,                                              AF_NONE,          AF_NONE,          AF_NONE
    ),
    [GAMING] = RGB_LAYOUT(
       AF_FIRE,          AF_FIRE,          AF_FIRE,                                              AF_FIRE,          AF_FIRE,          AF_FIRE,    
@@ -117,7 +117,7 @@ const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
       AF_NONE, AF_NONE, AF_CYAN, AF_CYAN, AF_CYAN, AF_NONE,                            AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, 
       AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_FIRE,          AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, AF_NONE, 
                                           AF_NONE, AF_NONE, AF_NONE,          AF_NONE, AF_FIRE, AF_NONE, 
-      AF_FIRE,          AF_FIRE,          AF_FIRE,                                              AF_FIRE,          AF_FIRE,          AF_FIRE
+      AF_NONE,          AF_NONE,          AF_NONE,                                              AF_NONE,          AF_NONE,          AF_NONE
    )
 };
 
