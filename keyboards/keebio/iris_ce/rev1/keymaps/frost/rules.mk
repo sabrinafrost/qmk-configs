@@ -1,11 +1,10 @@
 # LTO_ENABLE = yes
 TRI_LAYER_ENABLE = yes
-NKRO_ENABLE 	 = yes
-MAGIC_ENABLE 	 = no
-COMBO_ENABLE 	 = yes
+NKRO_ENABLE = yes
+MAGIC_ENABLE = no
+COMBO_ENABLE = yes
+TAP_DANCE_ENABLE = yes
 
-SRC += ledmatrix.c
-SRC += ledmap.c
-
-# RGB_MATRIX_ENABLE = yes
-# RGB_MATRIX_CUSTOM_USER = no
+SRC += ./features/rgb/flags.c
+SRC += ./features/rgb/map.c
+SRC += ./features/tapdances.c

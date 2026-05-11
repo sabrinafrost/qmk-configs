@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"name": "Iris CE Frost Edition",
+			"path": "./keyboards/keebio/iris_ce/rev1/keymaps/frost"
+		},
+		{
+			"name": "QMK Configs",
+			"path": "."
+		},
+		{
+			"name": "QMK Firmware",
+			"path": "../QMK/Original"
+		}
+	],
+	"settings": {}
+}

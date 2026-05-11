@@ -1,6 +1,22 @@
+/* Copyright 2026 Alys Frost
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #pragma once
 
-#include "quantum.h"
+#include QMK_KEYBOARD_H
 
 /*
     COLOURS
@@ -9,22 +25,15 @@
 */
 #define AF_AZURE       (rgb_t){0x99, 0xF5, 0xFF}
 #define AF_BLUE        (rgb_t){0x00, 0x00, 0xFF}
-#define AF_CHARTREUSE  (rgb_t){0x80, 0xFF, 0x00}
-#define AF_CORAL       (rgb_t){0xFF, 0x7C, 0x4D}
 #define AF_CYAN        (rgb_t){0x00, 0xFF, 0xFF}
 #define AF_GOLD        (rgb_t){0xFF, 0xD9, 0x00}
-#define AF_GOLDENROD   (rgb_t){0xD9, 0xA5, 0x21}
 #define AF_GRN         (rgb_t){0x00, 0xFF, 0x00}
-#define AF_MAGENTA     (rgb_t){0xFF, 0x00, 0xFF}
 #define AF_ORN         (rgb_t){0xFF, 0x80, 0x00}
 #define AF_PINK        (rgb_t){0xFF, 0x80, 0xBF}
 #define AF_PURP        (rgb_t){0x7A, 0x00, 0xFF}
 #define AF_RED         (rgb_t){0xFF, 0x00, 0x00}
-#define AF_SPRINGGREEN (rgb_t){0x00, 0xFF, 0x80}
 #define AF_TEAL        (rgb_t){0x00, 0x80, 0x80}
-#define AF_TURQUOISE   (rgb_t){0x47, 0x6E, 0x6A}
 #define AF_WHITE       (rgb_t){0xFF, 0xFF, 0xFF}
-#define AF_YELLOW      (rgb_t){0xFF, 0xFF, 0x00}
 // AF_TRANS is practically black, but I'm using it as a way to
 // signal that we want to pass through the colour assignment from
 // the previous layer in the same that KC_TRANS does for keycodes.
@@ -75,8 +84,8 @@
     Example
     ---
     ```
-    const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
-        [DVORAK] = LIGHTMAP_KEYS(
+    const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
+        [DVORAK] = RGB_LAYOUT(
             AF_OFF,           AF_OFF,           AF_OFF,                                            AF_OFF,           AF_OFF,           AF_OFF,
             AF_OFF,  AF_OFF,  AF_GOLD, AF_BLUE, AF_GRN, AF_PURP,                          AF_PURP, AF_GRN,  AF_BLUE, AF_OFF,  AF_RED,  AF_OFF,
             AF_CYAN, AF_RED,  AF_GOLD, AF_BLUE, AF_OFF,  AF_OFF,                          AF_OFF,  AF_OFF,  AF_OFF,  AF_GOLD, AF_RED,  AF_CYAN,
@@ -87,7 +96,7 @@
         ),
     };
 */
-#define LIGHTMAP_KEYS( \
+#define RGB_LAYOUT( \
     LG01,       LG02,       LG03,                             RG03,       RG02,       RG01, \
     LH01, LH02, LH03, LH04, LH05, LH06,                 RH06, RH05, RH04, RH03, RH02, RH01, \
     LH10, LH11, LH12, LH13, LH14, LH15,                 RH15, RH14, RH13, RH12, RH11, RH10, \
@@ -122,7 +131,7 @@
     Example
     ---
     ```
-    const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
+    const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
         [DVORAK] = LIGHTMAP_ZONES(
             AF_BLUE, // Numbers
             AF_OFF,  // Letters
@@ -154,7 +163,7 @@
     Example
     ---
     ```
-    const rgb_t PROGMEM lightmaps[][RGB_MATRIX_LED_COUNT] = {
+    const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
         [DVORAK] = LIGHTMAP_ZONES(AF_BLUE),
     };
     ```
