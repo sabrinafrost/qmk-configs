@@ -15,20 +15,19 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#pragma once
-#include QMK_KEYBOARD_H
+#include "./colours.h"
 
-/* TAP DANCE DEFINITIONS */
-enum tap_dances {
-  TD_MEDIA,
-  TD_LAYERS,
-  TAP_DANCE_ACTIONS_COUNT,
-};
+/*
+    Compares two `rgb_t` colour values.
 
-extern tap_dance_action_t tap_dance_actions[TAP_DANCE_ACTIONS_COUNT];
-
-void dance_media_finished (tap_dance_state_t *state, void *user_data);
-void dance_media_reset (tap_dance_state_t *state, void *user_data);
-
-void dance_layers_finished (tap_dance_state_t *state, void *user_data);
-void dance_layers_reset (tap_dance_state_t *state, void *user_data);
+    Example
+    ---
+    ```
+    if (!rgb_equal(AF_WHITE, AF_BLACK)) {
+        // Suprise! They don't match.
+    }
+    ```
+*/
+bool rgb_equal(rgb_t a, rgb_t b) {
+    return a.r == b.r && a.g == b.g && a.b == b.b;
+}

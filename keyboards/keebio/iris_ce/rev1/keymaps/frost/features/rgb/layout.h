@@ -1,47 +1,19 @@
-/* Copyright 2026 Alys Frost
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
-
-#pragma once
-
-#include QMK_KEYBOARD_H
-
 /*
-    COLOURS
-    ---
-    The following colours are available for use in the functions below.
-*/
-#define AF_AZURE       (rgb_t){0x99, 0xF5, 0xFF}
-#define AF_BLUE        (rgb_t){0x00, 0x00, 0xFF}
-#define AF_CYAN        (rgb_t){0x00, 0xFF, 0xFF}
-#define AF_GOLD        (rgb_t){0xFF, 0xD9, 0x00}
-#define AF_GRN         (rgb_t){0x00, 0xFF, 0x00}
-#define AF_ORN         (rgb_t){0xFF, 0x80, 0x00}
-#define AF_PINK        (rgb_t){0xFF, 0x80, 0xBF}
-#define AF_PURP        (rgb_t){0x7A, 0x00, 0xFF}
-#define AF_RED         (rgb_t){0xFF, 0x00, 0x00}
-#define AF_TEAL        (rgb_t){0x00, 0x80, 0x80}
-#define AF_WHITE       (rgb_t){0xFF, 0xFF, 0xFF}
-// AF_TRANS is practically black, but I'm using it as a way to
-// signal that we want to pass through the colour assignment from
-// the previous layer in the same that KC_TRANS does for keycodes.
-#define AF_TRANS       (rgb_t){0x00, 0x00, 0x01}
-// AF_NO is pure black and simply means the LED is turned off.
-#define AF_NO          (rgb_t){0x00, 0x00, 0x00}
+    Copyright 2026 Alys Frost
 
-/*
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
     LED MAP
     ---
     This is how I've "zoned" out my LEDs. You can do this properly with flags, but I'd like to 
@@ -132,7 +104,7 @@
     ---
     ```
     const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
-        [DVORAK] = LIGHTMAP_ZONES(
+        [DVORAK] = RGB_ZONES(
             AF_BLUE, // Numbers
             AF_OFF,  // Letters
             AF_OFF,  // Special Characters
@@ -144,7 +116,7 @@
     };
     ```
 */
-#define LIGHTMAP_ZONES(LTR, NUM, SPC, MOD, ACT, GLW, OFF){ \
+#define RGB_ZONES(LTR, NUM, SPC, MOD, ACT, GLW, OFF) { \
     LTR, GLW, NUM, NUM, GLW, NUM, NUM, GLW, NUM, \
     OFF, OFF, SPC, SPC, SPC, ACT, \
     MOD, OFF, OFF, OFF, LTR, OFF, \
@@ -154,7 +126,7 @@
     OFF, OFF, OFF, SPC, SPC, SPC, \
     SPC, SPC, NUM, NUM, LTR, MOD, \
     OFF, OFF, OFF, OFF, OFF, MOD, \
-    GLW, GLW, ACT, ACT, GLW, ACT, ACT \
+    GLW, GLW, ACT, ACT, GLW, ACT, ACT, \
 }
 
 /*
@@ -164,11 +136,11 @@
     ---
     ```
     const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
-        [DVORAK] = LIGHTMAP_ZONES(AF_BLUE),
+        [DVORAK] = RGB_ALL(AF_BLUE),
     };
     ```
 */
-#define LIGHTMAP_ALL(ALL) { \
+#define RGB_ALL(ALL) { \
     ALL, ALL, ALL, ALL, ALL, ALL, ALL, ALL, ALL, \
     ALL, ALL, ALL, ALL, ALL, ALL, \
     ALL, ALL, ALL, ALL, ALL, ALL, \
@@ -180,16 +152,3 @@
     ALL, ALL, ALL, ALL, ALL, ALL, \
     ALL, ALL, ALL, ALL, ALL, ALL, ALL, \
 }
-
-/*
-    Compares two `rgb_t` colour values.
-
-    Example
-    ---
-    ```
-    if (!rgb_equal(AF_WHITE, AF_BLACK)) {
-        // Suprise! They don't match.
-    }
-    ```
-*/
-bool rgb_equal(rgb_t a, rgb_t b);
