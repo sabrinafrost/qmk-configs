@@ -49,8 +49,8 @@ int cur_dance (tap_dance_state_t *state) {
             if (state->interrupted || !state->pressed) return TRIPLE_TAP;
             return TRIPLE_HOLD;
         default:
-            if (state->interrupted || !state->pressed) return OTHER_HOLD;
-            return OTHER_TAP;
+            if (state->interrupted || !state->pressed) return OTHER_TAP;
+            return OTHER_HOLD;
     }
 }
 
