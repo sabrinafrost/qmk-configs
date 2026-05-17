@@ -75,18 +75,16 @@
     Organized by the spectrum of the rainbow, with the named HTML colour
     added as a comment for reference.
 */
-#define AF_FIRE   HEX(FF0000) // Red
-#define AF_PINK   HEX(FF1493) // Pink
-#define AF_GOLD   HEX(FFD700) // Gold
-#define AF_LIME   HEX(60FF00) // Green
-#define AF_CYAN   HEX(00FFFF) // Cyan
-#define AF_BLUE   HEX(0000FF) // Blue
-#define AF_PURP   HEX(9932CC) // Purple
-#define AF_WHTE   HEX(FFFFFF) // White
-
-#define AF_NONE   HEX(000000, 100) // Black. Simply means the LED is off.
-#define AF_TRNS   HEX(000001, 100) // Almost black, used to pass colours through from layers above.
+#define FR_FIRE   HEX(FF0000)      // Red
+#define FR_PINK   HEX(FF1493)      // Pink
+#define FR_GOLD   HEX(FFD700)      // Gold
+#define FR_LIME   HEX(60FF00)      // Green
+#define FR_CYAN   HEX(00FFFF)      // Cyan
+#define FR_BLUE   HEX(0000FF)      // Blue
+#define FR_PURP   HEX(9932CC)      // Purple
+#define FR_WHTE   HEX(FFFFFF)      // White
+#define FR_NONE   HEX(000000, 100) // Black. Simply means the LED is off.
+#define FR_TRNS   HEX(000001, 100) // Almost black, used to pass colours through from layers above.
 
 // Checks if two `rgb_t` values are equal.
 bool rgb_equal(rgb_t a, rgb_t b);
-
