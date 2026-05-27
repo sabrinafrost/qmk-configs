@@ -156,35 +156,37 @@ const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
 */
 
 bool rgb_matrix_indicators_advanced_user(uint8_t led_min, uint8_t led_max) {
-   for (uint8_t i = led_min; i < led_max; i++) {
-      uint8_t layer = get_highest_layer(layer_state);
-      rgb_t colour = rgbmaps[layer][i];
-      
-      // Check if the colour from the referenced layer
-      // matches _______ / FR_TRANS. If it does, search
-      // the previous layers until a colour is found and
-      // pass that colour through.
-      if (layer > 0 && rgb_equal(colour, RGB_TRNS)) {
-         for (uint8_t l = layer; l < sizeof(keymaps)/sizeof(keymaps[0]); l--) {
-            // We've reached the last layer and no colour
-            // was found so we'll just turn it FR_OFF.
-            if (l < 0) {
-               colour = RGB_NONE;
-               break;
-            };
-            
-            // A colour was found so we'll use it and break the loop.
-            if (!rgb_equal(rgbmaps[l][i], RGB_TRNS)) {
-               colour = rgbmaps[l][i];
-               break;
-            }
-         }
-      }
-      
-      rgb_matrix_set_color(i, colour.r, colour.g, colour.b);
-   }
+   //  if (get_highest_layer(layer_state) > 0) {
+        uint8_t layer = get_highest_layer(layer_state);
 
-   return false;
+        for (uint8_t row = 0; row < MATRIX_ROWS; ++row) {
+            for (uint8_t col = 0; col < MATRIX_COLS; ++col) {
+                uint8_t index = g_led_config.matrix_co[row][col];
+
+                if (index >= led_min && index < led_max && index != NO_LED) {
+                  switch(keymap_key_to_keycode(layer, (keypos_t){col,row})) {
+                     case KC_1:
+                     case KC_2:
+                     case KC_3:
+                     case KC_4:
+                     case KC_5:
+                     case KC_6:
+                     case KC_7:
+                     case KC_8:
+                     case KC_9:
+                     case KC_0:
+                        rgb_matrix_set_color(index, RGB_GREEN);
+                        break;
+                     default:
+                        rgb_matrix_set_color(index, 0, 0, 0);
+                        break;
+                  }
+
+                }
+            }
+        }
+   //  }
+    return false;
 }
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {

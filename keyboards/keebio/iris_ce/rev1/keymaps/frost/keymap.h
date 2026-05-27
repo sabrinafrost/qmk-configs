@@ -50,3 +50,6 @@ enum custom_layers {
    - This way mapping is consist and automatic between layers.
    - The only configuration required is what colours to map to which keycode groups.
 */
+
+#define ZONE_NUMBERS          KC_1|KC_2|KC_3|KC_4|KC_5|KC_6|KC_7|KC_8|KC_9|KC_0
+
