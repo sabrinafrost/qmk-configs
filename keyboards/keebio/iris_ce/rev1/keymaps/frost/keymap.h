@@ -12,7 +12,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <http://www.gnu.org/licenses/>.
+   along with this program.  If not, see <http://www.gnu.oRGLW_/licenses/>.
 */
 
 #pragma once
@@ -22,11 +22,31 @@ enum custom_layers {
    DVORAK,
    NAVIGATION,
    GAMING,
+   PHOTOGRAPHY,
    SETTINGS,
 };
 
-#define AF_SPC LGUI(KC_SPC)           // Activates Spotlight
-#define AF_SCR LGUI(LSFT(KC_3))       // Takes a screenshot
-#define AF_REC LGUI(LALT(LSFT(KC_3))) // Toggles recording in OBS
-#define AF_LYR TD(TD_LAYERS)          // Switches layers
-#define AF_MED TD(TD_MEDIA)           // Controls media
+// Aliases
+#define FR_SPC LGUI(KC_SPC)           // Activates Spotlight
+#define FR_SCR LGUI(LSFT(KC_3))       // Takes a screenshot
+#define FR_REC LGUI(LALT(LSFT(KC_3))) // Toggles recording in OBS
+#define FR_LYR TD(TD_LAYERS)          // Switches layers
+#define FR_MED TD(TD_MEDIA)           // Controls media
+
+// Layers
+#define TO_DVK TO(DVORAK)             // Switches to default (Dvorak) layer
+#define TO_NAV TO(NAVIGATION)         // Switches to navigation layer
+#define MO_NAV MO(NAVIGATION)         // Momentarily switches to navigation layer
+#define TO_GMG TO(GAMING)             // Switches to gaming layer
+#define TO_PIC TO(PHOTOGRAPHY)        // Switches to photo editing layer
+#define TO_SET TO(SETTINGS)           // Switches to keyboard settings layer
+
+
+/*
+   IDEA
+   ----
+   - Write a RGB effect the proper way and have it assign colours based on the keycodes.
+   - Define the keycodes to include in each colour group.
+   - This way mapping is consist and automatic between layers.
+   - The only configuration required is what colours to map to which keycode groups.
+*/

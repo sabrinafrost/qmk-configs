@@ -17,6 +17,7 @@
 
 #pragma once
 #include QMK_KEYBOARD_H
+#include "./features/rgb.h"
 
 // Define this in config.h to control the default brightness of LEDs when using
 // the HEX macro. This is helpful for preventing, say, an entire layout of pure
@@ -75,18 +76,41 @@
     Organized by the spectrum of the rainbow, with the named HTML colour
     added as a comment for reference.
 */
-#define AF_FIRE   HEX(FF0000) // Red
-#define AF_PINK   HEX(FF1493) // Pink
-#define AF_GOLD   HEX(FFD700) // Gold
-#define AF_LIME   HEX(60FF00) // Green
-#define AF_CYAN   HEX(00FFFF) // Cyan
-#define AF_BLUE   HEX(0000FF) // Blue
-#define AF_PURP   HEX(9932CC) // Purple
-#define AF_WHTE   HEX(FFFFFF) // White
 
-#define AF_NONE   HEX(000000, 100) // Black. Simply means the LED is off.
-#define AF_TRNS   HEX(000001, 100) // Almost black, used to pass colours through from layers above.
+#define RGB_RED1  HEX(FF0000)      // Red (full brightness)
+#define RGB_RED2  HEX(FF0000, 20)  // Red (medium brightness)
+#define RGB_RED3  HEX(FF0000, 10)  // Red (low brightness)
+
+#define RGB_PNK1  HEX(FF1493)      // Pink (full brightness)
+#define RGB_PNK2  HEX(FF1493, 20)  // Pink (medium brightness)
+#define RGB_PNK3  HEX(FF1493, 10)  // Pink (low brightness)
+
+#define RGB_GLD1  HEX(FFD700)      // Gold (full brightness)
+#define RGB_GLD2  HEX(FFD700, 20)  // Gold (medium brightness)
+#define RGB_GLD3  HEX(FFD700, 10)  // Gold (low brightness)
+
+#define RGB_LIM1  HEX(60FF00)      // Lime (full brightness)
+#define RGB_LIM2  HEX(60FF00, 20)  // Lime (medium brightness)
+#define RGB_LIM3  HEX(60FF00, 10)  // Lime (low brightness)
+
+#define RGB_CYN1  HEX(00FFFF)      // Cyan (full brightness)
+#define RGB_CYN2  HEX(00FFFF, 20)  // Cyan (medium brightness)
+#define RGB_CYN3  HEX(00FFFF, 10)  // Cyan (low brightness)
+
+#define RGB_BLU1  HEX(0000FF)      // Blue (full brightness)
+#define RGB_BLU2  HEX(0000FF, 20)  // Blue (medium brightness)
+#define RGB_BLU3  HEX(0000FF, 10)  // Blue (low brightness)
+
+#define RGB_PUR1  HEX(9932CC)      // Purple (full brightness)
+#define RGB_PUR2  HEX(9932CC, 20)  // Purple (medium brightness)
+#define RGB_PUR3  HEX(9932CC, 10)  // Purple (low brightness)
+
+#define RGB_WHT1  HEX(FFFFFF)      // White (full brightness)
+#define RGB_WHT2  HEX(FFFFFF, 20)  // White (medium brightness)
+#define RGB_WHT3  HEX(FFFFFF, 10)  // White (low brightness)
+
+#define RGB_NONE  HEX(000000, 100) // Black. Simply means the LED is off.
+#define RGB_TRNS  HEX(000001, 100) // Almost black, used to pass colours through from layers above.
 
 // Checks if two `rgb_t` values are equal.
 bool rgb_equal(rgb_t a, rgb_t b);
-

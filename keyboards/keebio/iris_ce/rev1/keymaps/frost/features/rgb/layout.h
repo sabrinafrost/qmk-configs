@@ -50,6 +50,8 @@
     └─────┴─────┴─────┴─────┴─────┘                             └─────┴─────┴─────┴─────┴─────┘
 */
 
+#include "./colours.h"
+
 /*
     Generate a lightmap by targeting the individual LEDs.
 
@@ -58,13 +60,13 @@
     ```
     const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
         [DVORAK] = RGB_LAYOUT(
-            AF_OFF,           AF_OFF,           AF_OFF,                                            AF_OFF,           AF_OFF,           AF_OFF,
-            AF_OFF,  AF_OFF,  AF_GOLD, AF_BLUE, AF_GRN, AF_PURP,                          AF_PURP, AF_GRN,  AF_BLUE, AF_OFF,  AF_RED,  AF_OFF,
-            AF_CYAN, AF_RED,  AF_GOLD, AF_BLUE, AF_OFF,  AF_OFF,                          AF_OFF,  AF_OFF,  AF_OFF,  AF_GOLD, AF_RED,  AF_CYAN,
-            AF_CYAN, AF_OFF,  AF_OFF,  AF_OFF,  AF_GRN,  AF_OFF,                          AF_OFF,  AF_GRN,  AF_OFF,  AF_OFF,  AF_RED,  AF_CYAN,
-            AF_CYAN, AF_OFF,  AF_OFF,  AF_OFF,  AF_OFF,  AF_OFF,  AF_PURP,       AF_PURP, AF_OFF,  AF_OFF,  AF_OFF,  AF_OFF,  AF_OFF,  AF_CYAN,  
-                                                AF_BLUE, AF_GRN,  AF_OFF,        AF_PURP, AF_GRN,  AF_BLUE,
-            AF_OFF,           AF_OFF,           AF_OFF,                                            AF_OFF,           AF_OFF,           AF_OFF
+            FR_OFF,           FR_OFF,           FR_OFF,                                            FR_OFF,           FR_OFF,           FR_OFF,
+            FR_OFF,  FR_OFF,  FR_GOLD, FR_BLUE, FR_GRN, FR_PURP,                          FR_PURP, FR_GRN,  FR_BLUE, FR_OFF,  FR_RED,  FR_OFF,
+            FR_CYAN, FR_RED,  FR_GOLD, FR_BLUE, FR_OFF,  FR_OFF,                          FR_OFF,  FR_OFF,  FR_OFF,  FR_GOLD, FR_RED,  FR_CYAN,
+            FR_CYAN, FR_OFF,  FR_OFF,  FR_OFF,  FR_GRN,  FR_OFF,                          FR_OFF,  FR_GRN,  FR_OFF,  FR_OFF,  FR_RED,  FR_CYAN,
+            FR_CYAN, FR_OFF,  FR_OFF,  FR_OFF,  FR_OFF,  FR_OFF,  FR_PURP,       FR_PURP, FR_OFF,  FR_OFF,  FR_OFF,  FR_OFF,  FR_OFF,  FR_CYAN,  
+                                                FR_BLUE, FR_GRN,  FR_OFF,        FR_PURP, FR_GRN,  FR_BLUE,
+            FR_OFF,           FR_OFF,           FR_OFF,                                            FR_OFF,           FR_OFF,           FR_OFF
         ),
     };
 */
@@ -105,29 +107,26 @@
     ```
     const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
         [DVORAK] = RGB_ZONES(
-            AF_BLUE, // Numbers
-            AF_OFF,  // Letters
-            AF_OFF,  // Special Characters
-            AF_OFF,  // Modifiers
-            AF_CYAN, // Actions
-            AF_OFF,  // Underglow
-            AF_OFF   // Keys without shine-through caps.
+            FR_BLUE, // Numbers
+            FR_OFF,  // Letters
+            FR_OFF,  // Special Characters
+            FR_OFF,  // Modifiers
+            FR_CYAN, // Actions
+            FR_OFF,  // Underglow
+            FR_OFF   // Keys without shine-through caps.
         ),
     };
     ```
 */
-#define RGB_ZONES(LTR, NUM, SPC, MOD, ACT, GLW, OFF) { \
-    LTR, GLW, NUM, NUM, GLW, NUM, NUM, GLW, NUM, \
-    OFF, OFF, SPC, SPC, SPC, ACT, \
-    MOD, OFF, OFF, OFF, LTR, OFF, \
-    OFF, OFF, OFF, OFF, OFF, MOD, \
-    GLW, GLW, MOD, MOD, GLW, OFF, ACT, \
-    OFF, GLW, NUM, NUM, GLW, NUM, NUM, GLW, NUM, \
-    OFF, OFF, OFF, SPC, SPC, SPC, \
-    SPC, SPC, NUM, NUM, LTR, MOD, \
-    OFF, OFF, OFF, OFF, OFF, MOD, \
-    GLW, GLW, ACT, ACT, GLW, ACT, ACT, \
-}
+#define RGB_ZONES(NUMB,EDGE,THMB,ARRW,GLOW,OFF) RGB_LAYOUT(\
+    GLOW,       GLOW,       GLOW,                              GLOW,       GLOW,       GLOW, \
+    OFF,  NUMB, NUMB, NUMB, NUMB, NUMB,                  NUMB, NUMB, NUMB, NUMB, NUMB, OFF,  \
+    EDGE, NUMB, NUMB, ARRW, OFF,  OFF,                   OFF,  OFF,  ARRW, NUMB, NUMB, EDGE, \
+    EDGE, OFF,  ARRW, ARRW, ARRW, OFF,                   OFF,  ARRW, ARRW, ARRW, NUMB, EDGE, \
+    EDGE, NUMB, OFF,  OFF,  OFF,  OFF,  ARRW,      ARRW, OFF,  OFF,  OFF,  OFF,  OFF,  EDGE, \
+                            EDGE, EDGE, THMB,      THMB, EDGE, EDGE,                         \
+    GLOW,       GLOW,       GLOW,                              GLOW,       GLOW,       GLOW  \
+)
 
 /*
     Generate a solid lightmap for all keys.
@@ -136,7 +135,7 @@
     ---
     ```
     const rgb_t PROGMEM rgbmaps[][RGB_MATRIX_LED_COUNT] = {
-        [DVORAK] = RGB_ALL(AF_BLUE),
+        [DVORAK] = RGB_ALL(FR_BLUE),
     };
     ```
 */
